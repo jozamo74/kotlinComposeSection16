@@ -6,15 +6,21 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FabPosition
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
@@ -28,6 +34,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -236,9 +243,10 @@ fun ScaffoldExample() {
                     Text(text = "Pulsame")
                 }
             }
+        },
+        floatingActionButton = { MyFAB()},
+        floatingActionButtonPosition = FabPosition.Center
 
-
-        }
     )
 }
 
@@ -251,7 +259,7 @@ fun MyTopAppBar(onClickIcon: (String) -> Unit) {
         navigationIcon = {
             IconButton(onClick = { onClickIcon("atrás") }) {
                 Icon(
-                    imageVector = Icons.Filled.ArrowBack,
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = "back",
                     tint = Color.White
                 )
@@ -265,11 +273,25 @@ fun MyTopAppBar(onClickIcon: (String) -> Unit) {
                     tint = Color.White
                 )
             }
-        }
 
+            IconButton(onClick = { onClickIcon("añadir") }) {
+                Icon(
+                    imageVector = Icons.Filled.AddCircle,
+                    contentDescription = "add",
+                    tint = Color.White
+                )
+            }
+        }
     )
 }
 
+@Composable
+fun MyFAB() {
+    FloatingActionButton(onClick = { /*TODO*/ }, containerColor = Color.Blue, contentColor = Color.White) {
+        Icon(imageVector = Icons.Filled.Add, contentDescription = "add")
+        
+    }
+}
 @Preview
 @Composable
 fun ScaffoldExamplePreview() {
